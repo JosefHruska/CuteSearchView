@@ -146,11 +146,11 @@ public class FilterRvAdapter extends RecyclerView.Adapter<FilterRvAdapter.BaseVi
 
     class CivViewHolder extends BaseViewHolder {
 
-        CircleImageView mCIV;
+        ImageView mCIV;
 
         public CivViewHolder(View itemView) {
             super(itemView);
-            mCIV = (CircleImageView) itemView.findViewById(R.id.civ_icon);
+            mCIV = (ImageView) itemView.findViewById(R.id.civ_icon);
         }
 
         @Override
@@ -161,7 +161,7 @@ public class FilterRvAdapter extends RecyclerView.Adapter<FilterRvAdapter.BaseVi
             } else {
                 mCIV.setImageDrawable(filter.getIconDrawable());
             }
-            mCIV.setFillColor(filter.getIconBgColor());
+           // mCIV.setFillColor(filter.getIconBgColor());
         }
     }
 }

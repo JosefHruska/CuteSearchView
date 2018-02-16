@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:id="@+id/search_layout"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="match_parent"
         android:id="@+id/search_top_bar"
+        android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@android:color/white">
+
         <EditText
             android:id="@+id/ed_search_text"
             style="@style/MSV_SearchBox"
@@ -30,25 +30,55 @@
             android:layout_centerVertical="true"
             android:paddingLeft="@dimen/msv_icon_padding"
             android:paddingRight="@dimen/msv_icon_padding"
-            android:src="@drawable/ic_keyboard_backspace_grey600_24dp"/>
+            android:src="@drawable/ic_keyboard_backspace_grey600_24dp" />
+
+        <LinearLayout
+            android:id="@+id/vBuildingSwitcherContainer"
+            style="@style/MSV_Icon"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/bt_dropdown_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="36dp"
+                android:paddingLeft="@dimen/msv_icon_padding"
+                android:paddingRight="@dimen/msv_icon_padding"
+                android:src="@drawable/ic_expand_more_black_24dp" />
+
+            <TextView
+                android:id="@+id/bt_dropdown_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="36dp"
+                android:paddingLeft="@dimen/msv_icon_padding"
+                android:paddingRight="@dimen/msv_icon_padding"
+                android:src="@drawable/ic_expand_more_black_24dp"
+                tools:text="ADria"/>
+
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/bt_clear"
             style="@style/MSV_Icon"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/msv_horizontal_margin"
             android:src="@drawable/ic_close_grey600_24dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dip"
             android:layout_alignParentBottom="true"
             android:background="#fff"
-            android:backgroundTint="#10000000"/>
+            android:backgroundTint="#10000000" />
     </RelativeLayout>
 
     <FrameLayout
@@ -56,37 +86,39 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="?android:attr/actionBarSize"
         android:orientation="vertical">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_filter"
             android:layout_width="match_parent"
             android:layout_height="@dimen/msv_filter_rv_height"
-            android:padding="@dimen/msv_filter_rv_padding"
-            android:background="@color/whitePrimary" />
+            android:background="@color/whitePrimary"
+            android:padding="@dimen/msv_filter_rv_padding" />
 
         <TextView
             android:id="@+id/tv_no_filter"
+            style="@style/MSV_NoFilter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/msv_horizontal_margin"
             android:text="@string/msv_no_filter"
             android:visibility="gone"
-            tools:visibility="visible"
-            style="@style/MSV_NoFilter"/>
+            tools:visibility="visible" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dip"
             android:layout_gravity="bottom"
             android:background="#fff"
-            android:backgroundTint="#10000000"/>
+            android:backgroundTint="#10000000" />
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_select_filter"
-        android:layout_marginTop="?android:attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="?android:attr/actionBarSize"
         android:background="@color/whitePrimary"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 </FrameLayout>

@@ -18,6 +18,8 @@ public class MatSearchViewSuggestionActivity extends BaseMatSearchViewActivity i
 
         SuggestionMaterialSearchView cast = (SuggestionMaterialSearchView)mSearchView;
 
+
+
         cast.setSuggestion(arrays, true);
 
         mSearchView.setOnSearchViewListener(this);

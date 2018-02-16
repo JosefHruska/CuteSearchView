@@ -22,6 +22,9 @@ public class MatSearchViewFilterActivity extends BaseMatSearchViewActivity imple
 
         FilterMaterialSearchView cast = (FilterMaterialSearchView)mSearchView;
 
+
+
+
         Section section = new Section("Animals");
 
         cast.addSection(section);

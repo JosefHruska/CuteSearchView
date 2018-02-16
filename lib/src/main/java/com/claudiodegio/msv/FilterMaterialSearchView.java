@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Filterable;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.claudiodegio.msv.adapter.FilterRvAdapter;
@@ -32,7 +33,11 @@ public class FilterMaterialSearchView extends BaseMaterialSearchView implements 
     private FilterRvAdapter mFilterRvAdapter;
     private OnFilterViewListener mOnFilterViewListener;
     private TextView mTvNoFilter;
+    private LinearLayout mBuildingSelector;
     private boolean isContainFilter;
+
+    private List<BaseElement> mPrimaryItems;
+    private List<BaseElement> mSecondaryItems;
 
     public FilterMaterialSearchView(Context context) {
         super(context, null);
@@ -52,6 +57,15 @@ public class FilterMaterialSearchView extends BaseMaterialSearchView implements 
     protected int getLayoutId() {
         return R.layout.msv_filter;
     }
+
+    public void setupItems(List<BaseElement> primaryItems, List<BaseElement> secondaryItems) {
+        mPrimaryItems = primaryItems;
+        mSecondaryItems = secondaryItems;
+    }
+
+    public void setBuildingItems(List<BaseElement> list) { mSelectFilterRvAdapter.swapList(list);}
+
+    public void setDefaultItems(List<BaseElement> list) { mSelectFilterRvAdapter.swapList(list);}
 
     public void addSection(Section section) {
         mSelectFilterRvAdapter.addElement(section);
@@ -77,6 +91,14 @@ public class FilterMaterialSearchView extends BaseMaterialSearchView implements 
         mRvFilter = (RecyclerView) findViewById(R.id.rv_filter);
         mRvSelectFilter = (RecyclerView) findViewById(R.id.rv_select_filter);
         mTvNoFilter = (TextView)  findViewById(R.id.tv_no_filter);
+        mBuildingSelector = (LinearLayout) findViewById(R.id.vBuildingSwitcherContainer);
+
+        mBuildingSelector.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setBuildingItems(mPrimaryItems);
+            }
+        });
 
         mSelectFilterRvAdapter = new SelectFilterRvAdapter(getContext(), isContainFilter);
         mRvSelectFilter.setHasFixedSize(false);
@@ -177,11 +199,11 @@ public class FilterMaterialSearchView extends BaseMaterialSearchView implements 
     @Override
     public void onItemClick(RecyclerView rv, View view, int position) {
         Log.d(TAG, "onItemClick: position:" + position);
-
+  /*
         if (rv == mRvSelectFilter) {
             BaseElement element = mSelectFilterRvAdapter.getItem(position);
 
-            if (element instanceof Filter) {
+          if (element instanceof Filter) {
                 mFilterRvAdapter.addFilter((Filter) element);
                 hideSelectFilter();
                 hideKeyboard(mETSearchText);
@@ -190,7 +212,7 @@ public class FilterMaterialSearchView extends BaseMaterialSearchView implements 
                 if (mOnFilterViewListener != null) {
                     mOnFilterViewListener.onFilterAdded((Filter) element);
                 }
-            }
+           }
         } else {
             final Filter filter = mFilterRvAdapter.removeFilter(position);
 
@@ -203,6 +225,7 @@ public class FilterMaterialSearchView extends BaseMaterialSearchView implements 
                 mOnFilterViewListener.onFilterRemoved((Filter) filter);
             }
         }
+         */
 
         if (mOnFilterViewListener != null) {
             mOnFilterViewListener.onFilterChanged(mFilterRvAdapter.getFilters());

@@ -40,6 +40,6 @@
         app:msvSearchBackground="@color/yellow"
         app:msvHint="My Hint"
         app:msvTextColor="@color/red"
-        app:msvTextColorHint="@color/black_85"/>
+        app:msvTextColorHint="@color/black_85" />
 
 </android.support.design.widget.CoordinatorLayout>
